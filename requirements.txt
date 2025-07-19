@@ -1,0 +1,10 @@
+ultralytics
+opencv-python
+mediapipe
+numpy
+matplotlib
+torch
+torchvision
+scikit-learn
+pandas
+tqdm
