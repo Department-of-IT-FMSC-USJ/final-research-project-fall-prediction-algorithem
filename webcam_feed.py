@@ -17,10 +17,76 @@ import math
 import time
 import ctypes
 from collections import deque  # Added for buffering time-series metrics
+import argparse
+from typing import List, Union
+
+# Tuneable constants --------------------------------------------------------
+# Margin added around detected person bounding box before pose estimation.
+ROI_MARGIN = 0.25  # 25% expansion to include limbs that may fall outside box
 
 mp_drawing = mp.solutions.drawing_utils  # type: ignore[attr-defined]
 mp_drawing_styles = mp.solutions.drawing_styles  # type: ignore[attr-defined]
 mp_pose = mp.solutions.pose  # type: ignore[attr-defined]
+
+
+def _parse_args() -> argparse.Namespace:
+    """Parse command-line arguments for optional multi-camera processing.
+
+    The feature is **disabled by default** and must be explicitly enabled with
+    the ``--multi-view`` flag.  A comma-separated ``--sources`` list can be
+    provided to point to additional camera indices or video URLs.
+    """
+    parser = argparse.ArgumentParser(
+        description="Webcam / multi-camera fall detection with YOLOv8 + MediaPipe",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+
+    parser.add_argument(
+        "--sources",
+        type=str,
+        default="0",
+        help=(
+            "Comma-separated list of video sources.  Each token may be an integer "
+            "(webcam index) or a path / URL (e.g. '0,1' or 'rtsp://<ip>/stream')."
+        ),
+    )
+
+    parser.add_argument(
+        "--multi-view",
+        action="store_true",
+        help="Enable multi-camera & multi-view fusion (off by default).",
+    )
+
+    parser.add_argument(
+        "--pose-complexity",
+        type=int,
+        choices=[0, 1, 2],
+        default=1,
+        help="MediaPipe Pose parameter: 0=lite (fast), 1=full (accurate), 2=heavy (very accurate).",
+    )
+
+    return parser.parse_args()
+
+
+def _parse_sources(sources: str) -> List[Union[int, str]]:
+    """Convert a comma-separated source string to a list of typed sources."""
+    result: List[Union[int, str]] = []
+    for token in sources.split(","):
+        token = token.strip()
+        if not token:
+            continue
+        result.append(int(token) if token.isdigit() else token)
+    return result or [0]
+
+
+def _fuse_frames(frames: List[np.ndarray]) -> np.ndarray:  # type: ignore[name-defined]
+    """Placeholder multi-view fusion strategy.
+
+    For the initial implementation, simply returns the first frame.  This stub
+    exists so that future work can combine detections from multiple viewpoints
+    to mitigate occlusions and varying perspectives.
+    """
+    return frames[0]
 
 # ----------------- Pose landmark subset ----------------- #
 # Keep 20 key landmarks for a compact yet informative skeleton.
@@ -75,15 +141,46 @@ INDOOR_CLASSES = {
 
 
 def main() -> None:
-    """Start the webcam feed and display frames until the user presses 'q'."""
-    # 0 is typically the default webcam. Change the index if you have multiple cameras.
-    cap = cv2.VideoCapture(0)
+    """Start the video processing loop.
 
-    if not cap.isOpened():
-        raise RuntimeError("Could not open webcam. Make sure a camera is connected and not used by another application.")
+    By default the script runs exactly as before (single webcam at index 0).  If
+    ``--multi-view`` is specified **and** more than one source is provided via
+    ``--sources``, the script will open all sources and perform a rudimentary
+    frame-level fusion.  The fusion logic is currently a stub that selects the
+    first frame; the structure is in place for future multi-view occlusion
+    handling.
+    """
+
+    args = _parse_args()
+
+    # Parse & open sources ---------------------------------------------------
+    source_list = _parse_sources(args.sources)
+    multi_view_enabled = args.multi_view and len(source_list) > 1
+
+    if multi_view_enabled:
+        caps = []
+        for src in source_list:
+            cap_stream = cv2.VideoCapture(src)  # type: ignore[arg-type]
+            if not cap_stream.isOpened():
+                raise RuntimeError(f"Could not open video source '{src}'.")
+            caps.append(cap_stream)
+            # Minimise internal buffer to reduce latency
+            cap_stream.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+        # Keep a reference to the primary camera (index 0) for screen-size hints
+        cap = caps[0]
+    else:
+        cap = cv2.VideoCapture(source_list[0])  # type: ignore[arg-type]
+        if not cap.isOpened():
+            raise RuntimeError(
+                "Could not open webcam. Make sure a camera is connected and not "
+                "used by another application."
+            )
+        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+        caps = [cap]
 
     # Load a lightweight YOLOv8 model (nano version) trained on COCO
     model = YOLO("yolov8n.pt")
+    model.fuse()  # fuse Conv+BN for faster inference
 
     # Allowed object classes for overlay (filter to those present in model)
     allowed_classes = {cls for cls in INDOOR_CLASSES if cls in model.names.values()}
@@ -91,15 +188,26 @@ def main() -> None:
     # Confidence threshold for displaying detections
     conf_threshold = 0.25
 
-    # Initialize MediaPipe Pose once (low-complexity model for speed)
+    # Initialize MediaPipe Pose (configurable complexity)
     pose = mp_pose.Pose(static_image_mode=False,
-                        model_complexity=0,
+                        model_complexity=args.pose_complexity,
                         enable_segmentation=False,
-                        min_detection_confidence=0.5,
-                        min_tracking_confidence=0.5)
+                        min_detection_confidence=0.6,
+                        min_tracking_confidence=0.6)
 
     # Baseline NSAR (Normalized Shoulder-to-Ankle Ratio) value; set after first valid measurement
     nsar_baseline = None
+
+    # --- Pose persistence & smoothing helpers ---
+    POSE_PERSISTENCE_FRAMES = 5  # reuse last good landmarks for up to N frames
+    last_pose_landmarks = None   # cached landmarks to mitigate flicker
+    missing_pose_count = 0       # consecutive frames without new landmarks
+
+    SMOOTH_WINDOW = 8            # window for simple moving-average smoothing
+    trunk_angle_hist = deque(maxlen=SMOOTH_WINDOW)
+    nsar_hist = deque(maxlen=SMOOTH_WINDOW)
+    BASELINE_SAMPLE_SIZE = 30
+    nsar_baseline_samples = deque(maxlen=BASELINE_SAMPLE_SIZE)
 
     # Counter for consecutive frames where both upper and lower plumb angles exceed thresholds
     plumb_fall_counter = 0
@@ -118,16 +226,43 @@ def main() -> None:
     prev_time = time.perf_counter()
     fps = 0.0
 
+    # ---------------- Latency / detection statistics -----------------------
+    total_frames = 0
+    missed_detection_frames = 0
+    fall_event_latencies = []  # type: List[float]
+    current_fall_start = None  # type: float | None
+    last_latency = None
+
     # ---------------- Time-series metric buffer ---------------- #
     metrics_buffer = deque(maxlen=60)  # store at most 60 sampled frames (~1 minute)
     last_buffer_time = prev_time  # timestamp of last sample
 
     try:
         while True:
-            ret, frame = cap.read()
-            if not ret:
-                print("Failed to grab frame from webcam.")
-                break
+            # ------------------------------------------------------------------
+            # Frame acquisition
+            # ------------------------------------------------------------------
+            if multi_view_enabled:
+                frames: List[np.ndarray] = []  # type: ignore[var-annotated]
+                valid = True
+                for cap_stream in caps:
+                    ret_i, frame_i = cap_stream.read()
+                    if not ret_i:
+                        valid = False
+                        break
+                    frames.append(frame_i)
+
+                if not valid or not frames:
+                    print("Failed to grab frame from one of the cameras.")
+                    break
+
+                # Placeholder fusion – select first camera's frame.
+                frame = _fuse_frames(frames)
+            else:
+                ret, frame = cap.read()
+                if not ret:
+                    print("Failed to grab frame from webcam.")
+                    break
 
             # Time measurement for FPS
             current_time = time.perf_counter()
@@ -144,6 +279,9 @@ def main() -> None:
 
             # Reset per-frame plumb condition flag
             plumb_condition_met = False
+
+            # Statistics bookkeeping
+            total_frames += 1
 
             # Run YOLO inference (all classes) without spawning its own window
             results = model(frame, conf=conf_threshold, verbose=False, show=False)[0]
@@ -183,7 +321,19 @@ def main() -> None:
                             0.4, (0, 255, 0), 1, cv2.LINE_AA)
 
                 # ------- MediaPipe Pose on the ROI ------- #
-                roi = frame[y1:y2, x1:x2]
+                # Enlarge bounding box to minimise limb truncation
+                h_frame, w_frame, _ = frame.shape
+                box_w = x2 - x1
+                box_h = y2 - y1
+                margin_x = int(box_w * ROI_MARGIN)
+                margin_y = int(box_h * ROI_MARGIN)
+
+                x1_e = max(0, x1 - margin_x)
+                y1_e = max(0, y1 - margin_y)
+                x2_e = min(w_frame, x2 + margin_x)
+                y2_e = min(h_frame, y2 + margin_y)
+
+                roi = frame[y1_e:y2_e, x1_e:x2_e]
                 # Skip if ROI is empty
                 if roi.size == 0:
                     continue
@@ -192,10 +342,19 @@ def main() -> None:
                 roi_rgb = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
                 pose_results = pose.process(roi_rgb)
 
-                if pose_results.pose_landmarks:
+                # ---- Landmark persistence to reduce flicker ---- #
+                landmarks = pose_results.pose_landmarks
+                if landmarks is None and last_pose_landmarks is not None and missing_pose_count < POSE_PERSISTENCE_FRAMES:
+                    missing_pose_count += 1
+                    landmarks = last_pose_landmarks
+                elif landmarks is not None:
+                    last_pose_landmarks = landmarks
+                    missing_pose_count = 0
+
+                if landmarks:
                     # Draw only selected landmarks
                     h, w, _ = roi.shape
-                    lm = pose_results.pose_landmarks.landmark
+                    lm = landmarks.landmark
 
                     # Draw connections first (for underlay)
                     for idx1, idx2 in ESSENTIAL_CONNECTIONS:
@@ -234,47 +393,49 @@ def main() -> None:
 
                             # Store angle for global display (first person only)
                             if person_idx == 1:
-                                trunk_angle_value = angle_deg
+                                trunk_angle_hist.append(angle_deg)
+                                trunk_angle_value = sum(trunk_angle_hist) / len(trunk_angle_hist)
 
-                            # Trigger fall alert if trunk angle exceeds 45° (first person only)
-                            if person_idx == 1 and angle_deg > 45:
-                                status_text = "Fall Detected"
-                                trunk_fall_alert_display = True
+                                # Trigger fall alert if smoothed trunk angle exceeds threshold
+                                if trunk_angle_value > 45:
+                                    status_text = "Fall Detected"
+                                    trunk_fall_alert_display = True
 
                     # -------- Mid-Plumb Line Angles (θᵤ / θ_d) -------- #
                     if person_idx == 1:
                         req_indices = [0, 11, 12, 23, 24, 27, 28]
                         if all(lm[i].visibility > 0.3 for i in req_indices):
-                            # Normalized coords
-                            l_sh = lm[11]
-                            r_sh = lm[12]
-                            l_hip = lm[23]
-                            r_hip = lm[24]
-                            l_ank = lm[27]
-                            r_ank = lm[28]
+                            # Convert to full-frame pixel coordinates
+                            def px(idx: int) -> tuple[int, int]:
+                                return (
+                                    x1_e + int(lm[idx].x * w),  # x pixel
+                                    y1_e + int(lm[idx].y * h),  # y pixel
+                                )
 
-                            # Midpoints in normalized space
-                            sh_mid_x = (l_sh.x + r_sh.x) * 0.5
-                            sh_mid_y = (l_sh.y + r_sh.y) * 0.5
+                            l_sh_px = px(11)
+                            r_sh_px = px(12)
+                            l_hip_px = px(23)
+                            r_hip_px = px(24)
+                            l_ank_px = px(27)
+                            r_ank_px = px(28)
 
-                            hip_mid_x = (l_hip.x + r_hip.x) * 0.5
-                            hip_mid_y = (l_hip.y + r_hip.y) * 0.5
+                            # Midpoints in pixel space
+                            sh_mid = ((l_sh_px[0] + r_sh_px[0]) * 0.5, (l_sh_px[1] + r_sh_px[1]) * 0.5)
+                            hip_mid = ((l_hip_px[0] + r_hip_px[0]) * 0.5, (l_hip_px[1] + r_hip_px[1]) * 0.5)
+                            ank_mid = ((l_ank_px[0] + r_ank_px[0]) * 0.5, (l_ank_px[1] + r_ank_px[1]) * 0.5)
 
-                            ank_mid_x = (l_ank.x + r_ank.x) * 0.5
-                            ank_mid_y = (l_ank.y + r_ank.y) * 0.5
-
-                            # Upper segment vector (hip midpoint - shoulder midpoint)
-                            dx_u = hip_mid_x - sh_mid_x
-                            dy_u = hip_mid_y - sh_mid_y
+                            # Upper segment vector
+                            dx_u = hip_mid[0] - sh_mid[0]
+                            dy_u = hip_mid[1] - sh_mid[1]
                             norm_u = math.hypot(dx_u, dy_u)
 
-                            # Lower segment vector (ankle midpoint - hip midpoint)
-                            dx_d = ank_mid_x - hip_mid_x
-                            dy_d = ank_mid_y - hip_mid_y
+                            # Lower segment vector
+                            dx_d = ank_mid[0] - hip_mid[0]
+                            dy_d = ank_mid[1] - hip_mid[1]
                             norm_d = math.hypot(dx_d, dy_d)
 
                             if norm_u > 0 and norm_d > 0:
-                                cos_u = (-dy_u) / norm_u  # vertical unit vector (0,-1)
+                                cos_u = (-dy_u) / norm_u  # relative to vertical pixel direction (y positive down)
                                 cos_d = (-dy_d) / norm_d
                                 cos_u = max(-1.0, min(1.0, cos_u))
                                 cos_d = max(-1.0, min(1.0, cos_d))
@@ -296,27 +457,38 @@ def main() -> None:
                         # Required landmark indices for NSAR computation
                         req_indices = [0, 11, 12, 27, 28]
                         if all(lm[i].visibility > 0.3 for i in req_indices):
-                            nose = lm[0]
-                            left_shoulder = lm[11]
-                            right_shoulder = lm[12]
-                            left_ankle = lm[27]
-                            right_ankle = lm[28]
+                            # Pixel positions in full frame
+                            nose_px = (x1_e + int(lm[0].x * w), y1_e + int(lm[0].y * h))
+                            l_sh_px = (x1_e + int(lm[11].x * w), y1_e + int(lm[11].y * h))
+                            r_sh_px = (x1_e + int(lm[12].x * w), y1_e + int(lm[12].y * h))
+                            l_ank_px = (x1_e + int(lm[27].x * w), y1_e + int(lm[27].y * h))
+                            r_ank_px = (x1_e + int(lm[28].x * w), y1_e + int(lm[28].y * h))
 
-                            # Convert normalized coordinates to pixel distances
-                            width_px = abs(left_shoulder.x - right_shoulder.x) * w
-                            ankle_mid_y = (left_ankle.y + right_ankle.y) / 2
-                            height_px = abs(nose.y - ankle_mid_y) * h
+                            width_px = abs(l_sh_px[0] - r_sh_px[0])
+                            ankle_mid_y_px = (l_ank_px[1] + r_ank_px[1]) * 0.5
+                            height_px = abs(nose_px[1] - ankle_mid_y_px)
 
                             if height_px > 0:
                                 nsar = width_px / height_px
-                                nsar_value = nsar
 
-                                # Initialize baseline using first valid ratio
+                                nsar_hist.append(nsar)
+                                nsar_smooth = sum(nsar_hist) / len(nsar_hist)
+                                nsar_value = nsar_smooth
+
                                 if nsar_baseline is None:
-                                    nsar_baseline = nsar
+                                    nsar_baseline_samples.append(nsar_smooth)
+                                    if len(nsar_baseline_samples) >= BASELINE_SAMPLE_SIZE:
+                                        # Use median for robustness
+                                        sorted_samples = sorted(nsar_baseline_samples)
+                                        mid = len(sorted_samples) // 2
+                                        nsar_baseline = (
+                                            sorted_samples[mid]
+                                            if len(sorted_samples) % 2 == 1
+                                            else (sorted_samples[mid - 1] + sorted_samples[mid]) * 0.5
+                                        )
                                 else:
                                     # Trigger fall warning if NSAR drops more than 30% from baseline
-                                    if nsar < nsar_baseline * 0.7:
+                                    if nsar_smooth < nsar_baseline * 0.7:
                                         status_text = "Fall Detected"
                                         nsar_message_display = "NSAR drops > 30% Fall Detected"
 
@@ -340,9 +512,26 @@ def main() -> None:
             else:
                 plumb_fall_counter = 0
 
+            # Missed detection tracking
+            if not persons_boxes:
+                missed_detection_frames += 1
+
             # If plumb condition persists but not yet fall threshold, mark as warning
             if plumb_condition_met and plumb_fall_counter < PLUMB_FALL_THRESHOLD_FRAMES and status_text == "Normal":
                 status_text = "Warning"
+
+            # ------------------------------------------------------------------
+            # Latency calculation: record the first frame where warning begins,
+            # finalise when fall is confirmed.
+            # ------------------------------------------------------------------
+            if status_text == "Warning" and current_fall_start is None:
+                current_fall_start = current_time
+
+            if status_text == "Fall Detected" and current_fall_start is not None:
+                latency = current_time - current_fall_start
+                fall_event_latencies.append(latency)
+                last_latency = latency
+                current_fall_start = None
 
             # Display mid-plumb fall alert if counter exceeds threshold
             if plumb_fall_counter >= PLUMB_FALL_THRESHOLD_FRAMES:
@@ -379,6 +568,20 @@ def main() -> None:
 
             if abnormal_sec > 0:
                 cv2.putText(frame, f"Abnormal for: {abnormal_sec:.1f}s", (base_x, base_y), font, scale, color, thick, cv2.LINE_AA)
+                base_y += line_h
+
+            # Latency / detection metrics
+            miss_rate = (missed_detection_frames / total_frames * 100) if total_frames else 0.0
+            cv2.putText(frame, f"Miss Rate: {miss_rate:.1f}%", (base_x, base_y), font, scale, color, thick, cv2.LINE_AA)
+            base_y += line_h
+
+            if last_latency is not None:
+                cv2.putText(frame, f"Last Latency: {last_latency:.2f}s", (base_x, base_y), font, scale, color, thick, cv2.LINE_AA)
+                base_y += line_h
+
+            if fall_event_latencies:
+                avg_latency = sum(fall_event_latencies) / len(fall_event_latencies)
+                cv2.putText(frame, f"Avg Latency: {avg_latency:.2f}s", (base_x, base_y), font, scale, color, thick, cv2.LINE_AA)
 
             # ----------- Metric buffering (once per second) ----------- #
             if current_time - last_buffer_time >= 1.0:
@@ -400,8 +603,9 @@ def main() -> None:
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     finally:
-        # Release everything when finished
-        cap.release()
+        # Release all camera resources
+        for cam in caps:
+            cam.release()
         cv2.destroyAllWindows()
         pose.close()
 
