@@ -23,6 +23,7 @@ from typing import List, Union
 # Tuneable constants --------------------------------------------------------
 # Margin added around detected person bounding box before pose estimation.
 ROI_MARGIN = 0.25  # 25% expansion to include limbs that may fall outside box
+TRUNK_ANGLE_FALL_THRESHOLD_DEG = math.degrees(0.59)  # ≈ 33.8° trunk angle threshold for fall detection
 
 mp_drawing = mp.solutions.drawing_utils  # type: ignore[attr-defined]
 mp_drawing_styles = mp.solutions.drawing_styles  # type: ignore[attr-defined]
@@ -397,7 +398,7 @@ def main() -> None:
                                 trunk_angle_value = sum(trunk_angle_hist) / len(trunk_angle_hist)
 
                                 # Trigger fall alert if smoothed trunk angle exceeds threshold
-                                if trunk_angle_value > 45:
+                                if trunk_angle_value > TRUNK_ANGLE_FALL_THRESHOLD_DEG:
                                     status_text = "Fall Detected"
                                     trunk_fall_alert_display = True
 
@@ -502,7 +503,7 @@ def main() -> None:
 
             # Show trunk-angle-based fall alert if triggered this frame
             if 'trunk_fall_alert_display' in locals():
-                cv2.putText(frame, "Trunk Angle > 45 % Fall Detected", (10, 90),
+                cv2.putText(frame, f"Trunk Angle > {TRUNK_ANGLE_FALL_THRESHOLD_DEG:.1f}° Fall Detected", (10, 90),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
                 del trunk_fall_alert_display
 
