@@ -1,0 +1,6 @@
+{
+  "+1234567890": 123456789
+}
+
+# Edit this file to map phone numbers to Telegram chat IDs.
+# WARNING: chat IDs are integers returned by getUpdates / sendMessage.
