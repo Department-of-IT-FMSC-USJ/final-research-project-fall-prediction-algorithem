@@ -19,6 +19,12 @@ import ctypes
 from collections import deque  # Added for buffering time-series metrics
 import argparse
 from typing import List, Union
+import os
+from dotenv import load_dotenv
+from telegram_sender import _send as telegram_send
+from azure_foundry_predict import predict as foundry_predict
+
+load_dotenv()
 
 # Tuneable constants --------------------------------------------------------
 # Margin added around detected person bounding box before pose estimation.
@@ -213,6 +219,12 @@ def main() -> None:
     # Counter for consecutive frames where both upper and lower plumb angles exceed thresholds
     plumb_fall_counter = 0
     PLUMB_FALL_THRESHOLD_FRAMES = 60  # ~2 seconds at 30 FPS
+
+    # Telegram fall alert tracking
+    last_status_text = "Normal"
+
+    # Azure Foundry last response (for HUD display)
+    foundry_response = None
 
     window_name = "Webcam Live Feed – Person Detection (press 'q' to quit)"
     cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
@@ -544,6 +556,39 @@ def main() -> None:
             if plumb_condition_met:
                 abnormal_sec = plumb_fall_counter / fps if fps > 0 else 0.0
 
+            # ----------- External alerts on fall -----------
+            if status_text == "Fall Detected" and last_status_text != "Fall Detected":
+                token = os.getenv("TELEGRAM_BOT_TOKEN")
+                chat_id = os.getenv("TELEGRAM_CHAT_ID")
+
+                # ----------- Azure AI Foundry prediction -----------
+                prompt = (
+                    f"Metrics: trunk_angle={trunk_angle_value}, "
+                    f"nsar={nsar_value}, theta_d={theta_d_value}. "
+                    "Predict fall risk."
+                )
+                print("[AzureFoundry] Prompt:", prompt)
+                try:
+                    foundry_response = foundry_predict(prompt)
+                    print("[Azure Foundry]", foundry_response)
+                except Exception as e:
+                    print(f"[AzureFoundry] Failed to get prediction: {e}")
+
+                # ----------- Telegram message including Foundry response -----------
+                if token and chat_id:
+                    try:
+                        message = "Fall Risk Predicted!"
+                        if foundry_response:
+                            message += f"\n\nPrediction:\n{foundry_response}"
+                        telegram_send(token, int(chat_id), message)
+                    except Exception as e:
+                        print(f"[Telegram] Failed to send alert: {e}")
+                else:
+                    print("[Telegram] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set; skipping alert.")
+
+
+            last_status_text = status_text
+
             # Display the annotated frame
             # ----------- Persistent HUD (top-left) ----------- #
             base_x, base_y, line_h = 10, 20, 15
@@ -583,6 +628,14 @@ def main() -> None:
             if fall_event_latencies:
                 avg_latency = sum(fall_event_latencies) / len(fall_event_latencies)
                 cv2.putText(frame, f"Avg Latency: {avg_latency:.2f}s", (base_x, base_y), font, scale, color, thick, cv2.LINE_AA)
+
+            # Display Azure Foundry response if available
+            if foundry_response:
+                base_y += line_h
+                wrapped = foundry_response.split("\n")
+                for line in wrapped:
+                    cv2.putText(frame, line, (base_x, base_y), font, scale, (0, 255, 255), thick, cv2.LINE_AA)
+                    base_y += line_h
 
             # ----------- Metric buffering (once per second) ----------- #
             if current_time - last_buffer_time >= 1.0:
