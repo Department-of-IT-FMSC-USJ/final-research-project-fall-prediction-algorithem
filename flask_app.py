@@ -4,8 +4,8 @@ from __future__ import annotations
 # `webcam_feed.stream_frames_flask`.  All heavy lifting (YOLO + MediaPipe)
 # lives in `webcam_feed.py`.
 
-from flask import Flask, Response, render_template_string
-from fall_stream import stream_frames_flask
+from flask import Flask, Response, render_template_string, jsonify
+from fall_stream import stream_frames_flask, get_latest_stats
 
 app = Flask(__name__)
 
@@ -92,6 +92,18 @@ def index():
                     background: #c62828;
                 }
 
+                /* Stats table */
+                .stats {
+                    margin-top: 20px;
+                    font-size: 0.85rem;
+                    line-height: 1.6;
+                    color: #333;
+                }
+
+                .stats span.value {
+                    font-weight: bold;
+                    margin-left: 4px;
+                }
                 /* Center content */
                 .content {
                     flex: 1;
@@ -120,6 +132,24 @@ def index():
                     const img = document.getElementById('stream');
                     img.src = '#'; // setting to invalid source stops requests
                 }
+
+                // Fetch stats every second and update panel
+                async function updateStats() {
+                    try {
+                        const res = await fetch('/stats');
+                        const data = await res.json();
+                        document.getElementById('fps-val').textContent = (data.fps !== null && data.fps !== undefined) ? data.fps.toFixed(1) : '-';
+                        document.getElementById('trunk-val').textContent = (data.trunk_angle !== null && data.trunk_angle !== undefined) ? data.trunk_angle.toFixed(1) : '-';
+                        document.getElementById('nsar-val').textContent = (data.nsar !== null && data.nsar !== undefined) ? data.nsar.toFixed(3) : '-';
+                        document.getElementById('theta-u-val').textContent = (data.theta_u !== null && data.theta_u !== undefined) ? data.theta_u.toFixed(1) : '-';
+                        document.getElementById('theta-d-val').textContent = (data.theta_d !== null && data.theta_d !== undefined) ? data.theta_d.toFixed(1) : '-';
+                        document.getElementById('fall-val').textContent = data.fall_detected ? 'Yes' : 'No';
+                    } catch(e) {
+                        console.error('Failed to fetch stats', e);
+                    }
+                }
+
+                setInterval(updateStats, 1000);
             </script>
         </head>
         <body>
@@ -140,6 +170,15 @@ def index():
                 <aside class="controls">
                     <button onclick="startFeed()">Start Predicting</button>
                     <button class="stop" onclick="stopFeed()">Stop</button>
+
+                    <div class="stats">
+                        <div>FPS: <span id="fps-val" class="value">-</span></div>
+                        <div>Trunk Angle: <span id="trunk-val" class="value">-</span></div>
+                        <div>NSAR: <span id="nsar-val" class="value">-</span></div>
+                        <div>θu: <span id="theta-u-val" class="value">-</span></div>
+                        <div>θd: <span id="theta-d-val" class="value">-</span></div>
+                        <div>Fall Detected: <span id="fall-val" class="value">-</span></div>
+                    </div>
                 </aside>
             </div>
         </body>
@@ -154,6 +193,12 @@ def video_feed() -> Response:
         stream_frames_flask(),
         mimetype="multipart/x-mixed-replace; boundary=frame",
     )
+
+
+@app.route("/stats")
+def stats() -> Response:
+    """Return the latest per-frame statistics as JSON for AJAX polling."""
+    return jsonify(get_latest_stats())
 
 
 if __name__ == "__main__":
