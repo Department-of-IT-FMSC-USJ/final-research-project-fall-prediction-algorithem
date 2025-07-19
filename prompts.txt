@@ -1,3 +1,0 @@
-Create a basic Python script that opens a webcam feed using OpenCV and shows the video in a window.
-
-Now add MediaPipe pose detection inside each detected person's bounding box from YOLOv8. Draw the keypoints and skeleton on the frame. Use the 33 pose landmarks provided by MediaPipe.

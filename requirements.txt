@@ -9,3 +9,5 @@ scikit-learn
 pandas
 tqdm
 Flask
+python-dotenv
+requests
