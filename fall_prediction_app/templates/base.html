@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>{% block title %}Fall Prediction System{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='%23686a65'/%3E%3Cpath d='M12 30 24 14 36 30' stroke='%23ffffff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"/>
+    <style>
+        :root{
+            --bg:#14131A;           /* deep graphite */
+            --panel:#1F1E27;        /* dark indigo-grey */
+            --accent:#6DEFB1;       /* mint-aqua pop */
+            --text:#ECEFF4;
+            --muted:#9CA0AD;
+        }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);}
+        .topbar{height:60px;background:var(--panel);display:flex;align-items:center;
+                padding:0 24px;font-size:1.25rem;font-weight:500;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+        .main{display:flex;height:calc(100vh - 60px);animation:fadeSlide .5s ease;}
+        @keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+        .sidebar{width:200px;background:var(--panel);border-right:1px solid #2B2A33;padding:24px 18px;}
+        .sidebar nav a{display:block;padding:10px 8px;color:var(--text);border-radius:8px;margin-bottom:10px;
+                      transition:background .25s,color .25s;text-decoration:none;}
+        .sidebar nav a:hover{background:var(--accent);color:var(--bg);}
+        .controls{width:220px;background:var(--panel);border-left:1px solid #2B2A33;padding:24px 18px;}
+        .content{flex:1;display:flex;justify-content:center;align-items:center;background:var(--bg);}
+        .card{background:var(--panel);border-radius:14px;padding:24px;margin-bottom:28px;
+              box-shadow:0 4px 14px rgba(0,0,0,.35);transition:transform .25s ease;}
+        .card:hover{transform:translateY(-4px);}
+        .switch{position:relative;width:54px;height:26px;}
+        .switch input{opacity:0;width:0;height:0;}
+        .slider{position:absolute;top:0;left:0;right:0;bottom:0;background:#555;border-radius:26px;cursor:pointer;
+                transition:.3s;}
+        .slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;
+                      background:#fff;border-radius:50%;transition:.3s;}
+        input:checked + .slider{background:var(--accent);}
+        input:checked + .slider:before{transform:translateX(28px);}
+        img#stream{max-width:88%;max-height:88%;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.45);
+                  transition:box-shadow .3s;}
+        img#stream:hover{box-shadow:0 6px 24px rgba(0,0,0,.6);}
+        .stats{font-size:.85rem;line-height:1.7;color:var(--muted);}
+        .stats .value{color:var(--accent);}
+        button, .controls input[type=text]{border:none;border-radius:10px;padding:10px 14px;font-weight:500;}
+        button{cursor:pointer;background:var(--accent);color:var(--bg);transition:background .25s;}
+        button.stop{background:#dc3545;color:#fff;}
+        button:hover{background:#56d79a;}
+        
+        {% block extra_css %}{% endblock %}
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="topbar">
+        Fall Prediction Dashboard
+    </div>
+    <div class="main">
+        <aside class="sidebar">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/analytics">Analytics</a>
+                <a href="/settings">Settings</a>
+            </nav>
+        </aside>
+
+        {% block content %}{% endblock %}
+
+        {% block sidebar %}{% endblock %}
+    </div>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

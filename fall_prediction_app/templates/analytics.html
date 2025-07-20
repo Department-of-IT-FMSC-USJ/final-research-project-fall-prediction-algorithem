@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Fall Prediction System{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+.content{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#14131a;}
+canvas{max-width:90%;max-height:80%;}
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h2 style="margin-bottom:10px;">Last 2 minutes (rolling)</h2>
+    <canvas id="analyticsChart"></canvas>
+</section>
+{% endblock %}
+
+{% block sidebar %}
+<aside class="controls">
+    <!-- Placeholder for future filters -->
+    <p>Charts auto-refresh every second.</p>
+</aside>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const ctx = document.getElementById('analyticsChart').getContext('2d');
+
+const chart = new Chart(ctx, {
+    type:'line',
+    data:{labels:[],datasets:[
+        {label:'Trunk Angle',data:[],borderColor:'#6defb1',fill:false},
+        {label:'NSAR',data:[],borderColor:'#c62828',fill:false},
+        {label:'θu',data:[],borderColor:'#2e7d32',fill:false},
+        {label:'θd',data:[],borderColor:'#ff8f00',fill:false}
+    ]},
+    options:{
+        responsive:true,
+        scales:{
+            x:{display:false},
+            y:{beginAtZero:true}
+        }
+    }
+});
+
+async function fetchTimeline(){
+    const res = await fetch('/timeline');
+    const data = await res.json();
+    const slice = data.slice(-120); // last 120 s
+    const labels = slice.map(pt=> new Date(pt.ts*1000).toLocaleTimeString());
+
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = slice.map(pt=>pt.trunk_angle);
+    chart.data.datasets[1].data = slice.map(pt=>pt.nsar);
+    chart.data.datasets[2].data = slice.map(pt=>pt.theta_u);
+    chart.data.datasets[3].data = slice.map(pt=>pt.theta_d);
+    chart.update();
+}
+
+setInterval(fetchTimeline,1000);
+fetchTimeline();
+</script>
+{% endblock %} 

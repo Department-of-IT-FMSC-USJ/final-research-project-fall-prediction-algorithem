@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - Fall Prediction System{% endblock %}
+
+{% block extra_css %}
+body{font-family:Arial,sans-serif;background:#fff;}
+.content{flex:1;display:flex;flex-direction:column;align-items:center;gap:32px;padding:40px 30px; padding-top:30px;}
+.cards{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;}
+.card{width:500px;color:#ffffff; padding-top: 20px;}   /* wider cards with white text */
+.setting{margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;width:100%;}
+.card h3{margin-top:0;margin-bottom:14px;font-size:1.15rem;color:#6defb1;}
+.card input[type=text]{background:#2b2a33;border:1px solid #3c3c45;border-radius:8px;color:#ffffff;padding:10px;width:100%;box-sizing:border-box;transition:border-color .25s,box-shadow .25s;font-size:.9rem;}
+.card input[type=text]::placeholder{color:#6f6f78;}
+.card input[type=text]:focus{outline:none;border-color:#6defb1;box-shadow:0 0 0 2px rgba(109,239,177,.35);}  
+.setting span{color:#ffffff;font-size:.95rem;}
+.switch{position:relative;display:inline-block;width:50px;height:24px;}
+.switch input{opacity:0;width:0;height:0;}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;transition:.4s;border-radius:24px;}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:#fff;transition:.4s;border-radius:50%;}
+input:checked + .slider{background:#6defb1;}
+input:checked + .slider:before{transform:translateX(26px);}
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="cards" style="color:#ffffff;">
+        <!-- CAMERA CARD -->
+        <div class="card">
+            <h3>General Settings</h3>
+            <div class="setting">
+                <span>Enable Camera Stream</span>
+                <label class="switch">
+                    <input type="checkbox" id="camToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Share Analytics Data</span>
+                <label class="switch">
+                    <input type="checkbox" id="analyticsToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting">
+                <span>Show Personal Data</span>
+                <label class="switch">
+                    <input type="checkbox" id="personalToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- TELEGRAM CARD -->
+        <div class="card">
+            <h3>Telegram Configuratoins</h3><br/>
+            <div class="setting" style="flex-direction:column;align-items:flex-start;">
+                <label for="tokenInput" style="margin-bottom:6px;">Telegram API</label>
+                <input type="text" id="tokenInput" placeholder="123456:ABC…" style="width:100%;padding:6px;">
+            </div>
+            <div class="setting" style="flex-direction:column;align-items:flex-start;">
+                <label for="chatInput" style="margin-bottom:6px;">Chat ID</label>
+                <input type="text" id="chatInput" placeholder="987654321" style="width:100%;padding:6px;">
+            </div>
+            <div class="setting" style="flex-direction:column;align-items:flex-start;">
+                <label for="phoneInput" style="margin-bottom:6px;">Gardian Phone Number</label>
+                <input type="text" id="phoneInput" placeholder="987654321" style="width:100%;padding:6px;">
+            </div>
+            <small>Token, Phone Number & Chat ID are stored only in server memory. Video Data will be stored in your computer</small>
+        </div>
+    </div>
+
+    <p id="statusMsg" style="margin-top:20px;color:#6defb1;"></p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Load current settings
+async function loadSettings(){
+    const res = await fetch('/api/settings');
+    const s   = await res.json();
+    document.getElementById('camToggle').checked       = s.camera_enabled;
+    document.getElementById('analyticsToggle').checked = s.share_analytics;
+    document.getElementById('personalToggle').checked  = s.show_personal_data;
+    document.getElementById('tokenInput').value        = s.telegram_token || '';
+    document.getElementById('chatInput').value         = s.telegram_chat_id || '';
+    document.getElementById('phoneInput').value        = s.telegram_phone || '';
+}
+
+async function saveSettings(){
+    const body = {
+        camera_enabled:      document.getElementById('camToggle').checked,
+        share_analytics:     document.getElementById('analyticsToggle').checked,
+        show_personal_data:  document.getElementById('personalToggle').checked,
+        telegram_token:      document.getElementById('tokenInput').value.trim(),
+        telegram_chat_id:    document.getElementById('chatInput').value.trim(),
+        telegram_phone:      document.getElementById('phoneInput').value.trim(),
+    };
+    await fetch('/api/settings', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const msg = document.getElementById('statusMsg');
+    msg.textContent = 'Settings saved ✓';
+    setTimeout(()=>msg.textContent='',2000);
+}
+
+// Attach listeners
+['camToggle','analyticsToggle','personalToggle'].forEach(id=>{
+    document.getElementById(id).addEventListener('change',saveSettings);
+});
+
+loadSettings();
+</script>
+{% endblock %} 

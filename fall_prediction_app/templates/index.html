@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fall Prediction System{% endblock %}
+
+{% block extra_css %}
+.content img{
+    width:92%;height:auto;border:4px solid #6defb1;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:box-shadow .3s,transform .3s;
+}
+.content img:hover{box-shadow:0 6px 20px rgba(0,0,0,.35);transform:scale(1.01);}
+.topbar .logo{height:36px;width:36px;margin-right:12px;}
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <img id="stream" src="/video_feed" alt="video stream">
+</section>
+{% endblock %}
+
+{% block sidebar %}
+<aside class="controls">
+    <button onclick="startFeed()">Start Predicting</button>
+    <button class="stop" onclick="stopFeed()">Stop</button>
+
+    <div class="stats">
+        <div>FPS: <span id="fps-val" class="value">-</span></div>
+        <div>Trunk Angle: <span id="trunk-val" class="value">-</span></div>
+        <div>NSAR: <span id="nsar-val" class="value">-</span></div>
+        <div>θu: <span id="theta-u-val" class="value">-</span></div>
+        <div>θd: <span id="theta-d-val" class="value">-</span></div>
+        <div>Fall Detected: <span id="fall-val" class="value">-</span></div>
+        <div>Prediction: <span id="pred-val" class="value">-</span></div>
+    </div>
+</aside>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function startFeed() {
+        const img = document.getElementById('stream');
+        if (!img.src || img.src.endsWith('#')) {
+            img.src = '/video_feed?' + Date.now(); // bust cache
+        }
+    }
+
+    function stopFeed() {
+        const img = document.getElementById('stream');
+        img.src = '#'; // setting to invalid source stops requests
+    }
+
+    // Fetch stats every second and update panel
+    async function updateStats() {
+        try {
+            const res = await fetch('/stats');
+            const data = await res.json();
+            document.getElementById('fps-val').textContent = (data.fps !== null && data.fps !== undefined) ? data.fps.toFixed(1) : '-';
+            document.getElementById('trunk-val').textContent = (data.trunk_angle !== null && data.trunk_angle !== undefined) ? data.trunk_angle.toFixed(1) : '-';
+            document.getElementById('nsar-val').textContent = (data.nsar !== null && data.nsar !== undefined) ? data.nsar.toFixed(3) : '-';
+            document.getElementById('theta-u-val').textContent = (data.theta_u !== null && data.theta_u !== undefined) ? data.theta_u.toFixed(1) : '-';
+            document.getElementById('theta-d-val').textContent = (data.theta_d !== null && data.theta_d !== undefined) ? data.theta_d.toFixed(1) : '-';
+            document.getElementById('fall-val').textContent = data.fall_detected ? 'Yes' : 'No';
+            document.getElementById('pred-val').textContent = data.prediction ? data.prediction.slice(0,60) + (data.prediction.length>60?'…':'') : '-';
+        } catch(e) {
+            console.error('Failed to fetch stats', e);
+        }
+    }
+
+    setInterval(updateStats, 1000);
+</script>
+{% endblock %} 
