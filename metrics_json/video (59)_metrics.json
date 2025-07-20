@@ -1,0 +1,1759 @@
+[
+  {
+    "trunk_angle": 29.700627465855987,
+    "nsar": 0.24719101123595505,
+    "theta_u": 173.60104337263107,
+    "theta_d": 178.72696997994362,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.460809076655288,
+    "nsar": 0.24672983397618647,
+    "theta_u": 174.07541801801753,
+    "theta_d": 178.7363274483417,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 31.716383861156004,
+    "nsar": 0.2465761082229303,
+    "theta_u": 173.54118362128136,
+    "theta_d": 177.4738830883804,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 31.788482781886977,
+    "nsar": 0.24672983397618647,
+    "theta_u": 174.01940047523655,
+    "theta_d": 177.09618113490384,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 31.49884975798467,
+    "nsar": 0.2449675103036258,
+    "theta_u": 174.01940047523655,
+    "theta_d": 176.70603501215498,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 31.198889925571947,
+    "nsar": 0.2436457647591943,
+    "theta_u": 174.07541801801753,
+    "theta_d": 176.68221883166507,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.82892743814057,
+    "nsar": 0.2427016607988861,
+    "theta_u": 175.23635830927378,
+    "theta_d": 175.7946429982915,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.343292473330283,
+    "nsar": 0.2395175112514598,
+    "theta_u": 175.19204603696957,
+    "theta_d": 174.49958852979813,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.090629151274772,
+    "nsar": 0.23577219289939988,
+    "theta_u": 174.1303995569853,
+    "theta_d": 174.03551289874693,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.75502136907562,
+    "nsar": 0.23140370514947028,
+    "theta_u": 173.60104337263107,
+    "theta_d": 173.51692630710272,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.10000566355762,
+    "nsar": 0.2260918211731256,
+    "theta_u": 173.13630808537295,
+    "theta_d": 173.03653147351193,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 28.673257816094036,
+    "nsar": 0.2189572033237643,
+    "theta_u": 173.19868517601844,
+    "theta_d": 172.3758074955482,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 28.44354519622739,
+    "nsar": 0.21029022330695735,
+    "theta_u": 173.19868517601844,
+    "theta_d": 172.3758074955482,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 28.171702586089975,
+    "nsar": 0.19989136290809695,
+    "theta_u": 171.72410717292482,
+    "theta_d": 172.763077974032,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.88040314766386,
+    "nsar": 0.18777146090492647,
+    "theta_u": 172.50414236027012,
+    "theta_d": 171.93675383430278,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.750282137197757,
+    "nsar": 0.17709077106954627,
+    "theta_u": 171.94089609712907,
+    "theta_d": 171.53871185742864,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.47026749266549,
+    "nsar": 0.1644159774958763,
+    "theta_u": 171.59108826739927,
+    "theta_d": 171.14799590061057,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.034549847122516,
+    "nsar": 0.15338549854086903,
+    "theta_u": 172.50414236027012,
+    "theta_d": 171.14799590061057,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.617193506435857,
+    "nsar": 0.14222677752689813,
+    "theta_u": 172.07926009835896,
+    "theta_d": 170.15417763214742,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.39118379508014,
+    "nsar": 0.1306348036159598,
+    "theta_u": 171.10414303033667,
+    "theta_d": 170.3878852456341,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.29577463999235,
+    "nsar": 0.12059141844579979,
+    "theta_u": 170.29960805605415,
+    "theta_d": 170.61085243866876,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.52828599160688,
+    "nsar": 0.1132219630836437,
+    "theta_u": 169.90894276111112,
+    "theta_d": 170.68291393087375,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.305853366766122,
+    "nsar": 0.1091050926000417,
+    "theta_u": 168.59750576561095,
+    "theta_d": 171.38435181583588,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.781869081033985,
+    "nsar": 0.10661823836900142,
+    "theta_u": 169.52576517177417,
+    "theta_d": 169.5839716924293,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.670116957674775,
+    "nsar": 0.10234355552289,
+    "theta_u": 170.0737544933483,
+    "theta_d": 168.45747429956313,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.07521601818767,
+    "nsar": 0.09621819939753387,
+    "theta_u": 170.29960805605415,
+    "theta_d": 168.46537934635532,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.35197039015172,
+    "nsar": 0.09295964406700472,
+    "theta_u": 171.0273733851036,
+    "theta_d": 168.54124765412283,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.31633791499504,
+    "nsar": 0.09095685094823368,
+    "theta_u": 170.21759296819272,
+    "theta_d": 169.21570213243743,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.06247345390616,
+    "nsar": 0.0900284492845379,
+    "theta_u": 170.92850242282285,
+    "theta_d": 168.9964591482505,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 25.482034658596216,
+    "nsar": 0.08478965197221615,
+    "theta_u": 171.28856244804962,
+    "theta_d": 168.9964591482505,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 24.45710113945385,
+    "nsar": 0.078896794829359,
+    "theta_u": 171.21883726561455,
+    "theta_d": 168.84534026107173,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 23.591112695533656,
+    "nsar": 0.07407744751001169,
+    "theta_u": 171.6743496695732,
+    "theta_d": 168.0706778227617,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 22.96952541407835,
+    "nsar": 0.07467070807004966,
+    "theta_u": 172.19359917076426,
+    "theta_d": 168.84534026107173,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 23.10030321625586,
+    "nsar": 0.07865648192337318,
+    "theta_u": 171.869897645844,
+    "theta_d": 170.2724214485984,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 23.39096229619627,
+    "nsar": 0.08415835154539418,
+    "theta_u": 172.70580369145915,
+    "theta_d": 170.67046035730192,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 22.905987015945286,
+    "nsar": 0.09220078054977177,
+    "theta_u": 172.25528945357706,
+    "theta_d": 171.869897645844,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 22.830979048308684,
+    "nsar": 0.10183661255402483,
+    "theta_u": 172.43467893156765,
+    "theta_d": 172.92646232503864,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 23.508472482610163,
+    "nsar": 0.1172729195271452,
+    "theta_u": 171.2538377374448,
+    "theta_d": 175.34174589032432,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 24.5072644193234,
+    "nsar": 0.13175989021118428,
+    "theta_u": 170.53767779197443,
+    "theta_d": 177.39743779750034,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 25.065281431947017,
+    "nsar": 0.13884709351355787,
+    "theta_u": 171.44816976617994,
+    "theta_d": 179.20976349757075,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 25.859465875621883,
+    "nsar": 0.14415404579939445,
+    "theta_u": 170.74427225544775,
+    "theta_d": 178.81473918137775,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 26.7074796723785,
+    "nsar": 0.14931392066227178,
+    "theta_u": 170.74427225544775,
+    "theta_d": 177.25504410616193,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.638225328646566,
+    "nsar": 0.1519294084126476,
+    "theta_u": 170.40109693145814,
+    "theta_d": 176.08175113593262,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 28.62013803316931,
+    "nsar": 0.15365613818959475,
+    "theta_u": 170.33133133891639,
+    "theta_d": 174.94617394993568,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.165677704854627,
+    "nsar": 0.15398102447939332,
+    "theta_u": 171.00620760124443,
+    "theta_d": 174.73230287195585,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.183536115038393,
+    "nsar": 0.1511529701807508,
+    "theta_u": 171.00620760124443,
+    "theta_d": 175.57044070102245,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 28.997984164202343,
+    "nsar": 0.14857593738491046,
+    "theta_u": 170.5376777919744,
+    "theta_d": 175.91438322002512,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.36275230018694,
+    "nsar": 0.15017921027301306,
+    "theta_u": 170.87710379462152,
+    "theta_d": 177.98337612537696,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.140641799605714,
+    "nsar": 0.15199022524073952,
+    "theta_u": 170.53767779197443,
+    "theta_d": 179.55927192723982,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.575152475614782,
+    "nsar": 0.15261645913379152,
+    "theta_u": 170.39479584498707,
+    "theta_d": 180.0,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 30.26539694016998,
+    "nsar": 0.14780278810079533,
+    "theta_u": 171.44816976617994,
+    "theta_d": 180.0,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.56029112609203,
+    "nsar": 0.1388068987368078,
+    "theta_u": 171.93306827020692,
+    "theta_d": 179.0759546472272,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 29.051041127345915,
+    "nsar": 0.12874517034174607,
+    "theta_u": 172.3758074955482,
+    "theta_d": 179.54164354199997,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 27.8751618266412,
+    "nsar": 0.11602905909143288,
+    "theta_u": 174.37537195855404,
+    "theta_d": 178.21008939175394,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 26.601473803606556,
+    "nsar": 0.10273532915430446,
+    "theta_u": 174.37537195855404,
+    "theta_d": 177.6784694101673,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 25.30732576134096,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 23.516869497775964,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 22.03598685186651,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 21.112399694376187,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 20.38681554233678,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 19.973224114480526,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 19.985516985118682,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 19.87076436287646,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 19.662250100762726,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 19.591712878108286,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 18.792262379513062,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 17.57886448251477,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 16.140929103448702,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 13.905563277594391,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 11.321712300695067,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 9.309963654686479,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 7.7679340725151755,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 6.468958987664408,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 5.672657454552622,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.972105783083339,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.179995898541137,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.0000309076440415,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.482724428910563,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.277472928058296,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 3.7511044530265036,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 3.25429445776339,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 2.733746524124526,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 2.5710796730343453,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 2.833264134617142,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 3.0420090213490645,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 3.566697443349811,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.585678256344699,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 5.6993058725590675,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 6.6976726834503735,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 7.618673588750986,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 7.939789242310229,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 8.129388969597873,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 7.705070060675231,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 6.780702340469897,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 5.52718755846429,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.499556632887814,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.176988698075875,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 4.084793564361772,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 3.9445415978310794,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 3.9894331854867042,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 5.64894872360896,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 7.3127241702933805,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 8.697503988525286,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 9.697834840452082,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 9.902576302327265,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 10.15410586202205,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 11.435483571886095,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 13.085377402757102,
+    "nsar": null,
+    "theta_u": null,
+    "theta_d": null,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 13.635380343171832,
+    "nsar": 0.11507481551064475,
+    "theta_u": 178.78112476486868,
+    "theta_d": 180.0,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 14.287309660539197,
+    "nsar": 0.12831892635424574,
+    "theta_u": 177.96908576314698,
+    "theta_d": 179.62305952040353,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 15.42122745181284,
+    "nsar": 0.14062889235745377,
+    "theta_u": 177.54596832547296,
+    "theta_d": 180.0,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 16.67625108611809,
+    "nsar": 0.15788843130816918,
+    "theta_u": 177.52833523836668,
+    "theta_d": 178.84654954889473,
+    "fall_detected": false
+  },
+  {
+    "trunk_angle": 17.9592899083594,
+    "nsar": 0.17801075912280467,
+    "theta_u": 177.9098408462894,
+    "theta_d": 179.61803379527132,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 19.179644357629787,
+    "nsar": 0.19935404270489424,
+    "theta_u": 177.87890360333856,
+    "theta_d": 178.46222761530268,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 19.982261920016118,
+    "nsar": 0.22352800747892923,
+    "theta_u": 177.41697933136481,
+    "theta_d": 178.10348169679065,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 20.405461783158373,
+    "nsar": 0.24847240558846495,
+    "theta_u": 176.91781917547186,
+    "theta_d": 178.09084756700364,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 20.86571985839487,
+    "nsar": 0.24848725673751956,
+    "theta_u": 176.42366562500263,
+    "theta_d": 177.75425743410514,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 21.33672724482627,
+    "nsar": 0.24669530632718256,
+    "theta_u": 175.97800982297986,
+    "theta_d": 177.43075897985184,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 21.75104712925676,
+    "nsar": 0.24481039180893677,
+    "theta_u": 175.497810507959,
+    "theta_d": 177.79740183823435,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 22.21307785754776,
+    "nsar": 0.24215615938425958,
+    "theta_u": 175.01063743035783,
+    "theta_d": 177.41420565757554,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 22.814995816883133,
+    "nsar": 0.24068608620318713,
+    "theta_u": 175.497810507959,
+    "theta_d": 175.66173320857175,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 23.516759510050168,
+    "nsar": 0.23889551827604966,
+    "theta_u": 174.60225122351966,
+    "theta_d": 172.16073666819457,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 24.370447318654026,
+    "nsar": 0.23686931590372423,
+    "theta_u": 174.15543412261314,
+    "theta_d": 171.4692343900519,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 25.25518448843559,
+    "nsar": 0.23474761659552976,
+    "theta_u": 174.06258390051855,
+    "theta_d": 169.87532834460217,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 25.92717450016671,
+    "nsar": 0.23347504298540356,
+    "theta_u": 174.88958243896877,
+    "theta_d": 168.45747429956313,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 26.456065710222763,
+    "nsar": 0.23260920177038058,
+    "theta_u": 174.24173983563324,
+    "theta_d": 167.4711922908485,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 27.2792610787776,
+    "nsar": 0.23315300841690628,
+    "theta_u": 173.6598082540901,
+    "theta_d": 167.00538320808352,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 27.957952611765105,
+    "nsar": 0.23261768742824487,
+    "theta_u": 174.14398641457106,
+    "theta_d": 165.869520137586,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 28.596117909260705,
+    "nsar": 0.2300496988789479,
+    "theta_u": 173.43730149106256,
+    "theta_d": 165.41108126712538,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 29.11550431793758,
+    "nsar": 0.2260942528485692,
+    "theta_u": 173.19868517601844,
+    "theta_d": 164.97289058597138,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 29.576256181834665,
+    "nsar": 0.22209169641198184,
+    "theta_u": 172.0928372970416,
+    "theta_d": 165.09174198774474,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 30.103496392632067,
+    "nsar": 0.21580087328326364,
+    "theta_u": 171.05461816646107,
+    "theta_d": 165.33217509629995,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 31.238344772936166,
+    "nsar": 0.20784736799070608,
+    "theta_u": 168.6900675259798,
+    "theta_d": 164.74488129694225,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 32.67762724324747,
+    "nsar": 0.19706227475928184,
+    "theta_u": 163.4570165954375,
+    "theta_d": 164.05460409907715,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 34.16969704750377,
+    "nsar": 0.18329604099304808,
+    "theta_u": 159.44395478041653,
+    "theta_d": 162.56512530520072,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 35.91326593172137,
+    "nsar": 0.16882143571965616,
+    "theta_u": 155.4622715234222,
+    "theta_d": 162.969843227113,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 37.86287019716936,
+    "nsar": 0.15398953064384863,
+    "theta_u": 151.34288254344187,
+    "theta_d": 161.8962369654934,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 39.549832032104575,
+    "nsar": 0.13620476101927526,
+    "theta_u": 149.2372804657611,
+    "theta_d": 161.02959219151347,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 40.64595874771594,
+    "nsar": 0.11716287460178691,
+    "theta_u": 148.71734631836034,
+    "theta_d": 158.74949449286677,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 40.98744752304213,
+    "nsar": 0.09903286326725017,
+    "theta_u": 152.27174257768087,
+    "theta_d": 156.7139350817764,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 40.37199380261978,
+    "nsar": 0.08285515411508845,
+    "theta_u": 149.6973192795119,
+    "theta_d": 151.84380855172742,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 38.6744312286748,
+    "nsar": 0.07176113523830899,
+    "theta_u": 153.13808215559732,
+    "theta_d": 144.1301764822787,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 35.93094516847669,
+    "nsar": 0.06609074928623289,
+    "theta_u": 158.7135948863409,
+    "theta_d": 141.34019174590992,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 32.981336804765625,
+    "nsar": 0.06519696240667718,
+    "theta_u": 158.74949449286675,
+    "theta_d": 139.04448557418112,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 29.745054779530893,
+    "nsar": 0.06292247537609258,
+    "theta_u": 159.8874117109245,
+    "theta_d": 135.57872556560778,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 26.513293101562112,
+    "nsar": 0.06782183978287225,
+    "theta_u": 160.55996517182382,
+    "theta_d": 131.11209043916693,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 23.915763933428156,
+    "nsar": 0.07146312151404162,
+    "theta_u": 159.7343025290525,
+    "theta_d": 124.54836705601132,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 21.647043037413518,
+    "nsar": 0.08596678835531978,
+    "theta_u": 159.86369657175186,
+    "theta_d": 115.82099197418928,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 19.880775483659175,
+    "nsar": 0.1033813182698497,
+    "theta_u": 159.10223450116112,
+    "theta_d": 113.40468955103232,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 18.843040586760708,
+    "nsar": 0.1217588017135583,
+    "theta_u": 157.61986494804043,
+    "theta_d": 106.92751306414705,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 18.191745008155696,
+    "nsar": 0.13693071554951522,
+    "theta_u": 156.25050550713325,
+    "theta_d": 99.00850374202516,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 17.58996980916259,
+    "nsar": 0.1407629059488698,
+    "theta_u": 160.20112364547506,
+    "theta_d": 105.25511870305778,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 16.97359440988627,
+    "nsar": 0.1436627838487477,
+    "theta_u": 159.0442232693678,
+    "theta_d": 108.21709519782485,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 16.359887778808922,
+    "nsar": 0.14299911221305237,
+    "theta_u": 159.3045492659367,
+    "theta_d": 113.28606491822357,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 15.606620109892706,
+    "nsar": 0.14266842438236454,
+    "theta_u": 160.0168934781,
+    "theta_d": 116.27421215472742,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 14.769258306829492,
+    "nsar": 0.12920224080748532,
+    "theta_u": 163.3007557660064,
+    "theta_d": 115.7307056015312,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 13.804132305538117,
+    "nsar": 0.10969740988961092,
+    "theta_u": 166.46414363086578,
+    "theta_d": 114.14554196042165,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 12.911814460497997,
+    "nsar": 0.08469740988961091,
+    "theta_u": 165.71890426402922,
+    "theta_d": 114.59979060515748,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 12.330026833673951,
+    "nsar": 0.05896211577196386,
+    "theta_u": 166.70142966950573,
+    "theta_d": 116.29479007058386,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 11.657304019545956,
+    "nsar": 0.04207022388007197,
+    "theta_u": 165.96375653207352,
+    "theta_d": 116.84050953321324,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.8734513695551,
+    "nsar": 0.0342002061090641,
+    "theta_u": 171.0273733851036,
+    "theta_d": 117.38742215707619,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.2388527576072,
+    "nsar": 0.02453296571893214,
+    "theta_u": 170.18069936124212,
+    "theta_d": 124.73485953978627,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.58139726823055,
+    "nsar": 0.017940842888491553,
+    "theta_u": 169.11447294534128,
+    "theta_d": 125.61085243866876,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.186691419530888,
+    "nsar": 0.016972443296238753,
+    "theta_u": 170.36246188706903,
+    "theta_d": 125.24757505834623,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.873032848493699,
+    "nsar": 0.02126439778628345,
+    "theta_u": 170.53767779197435,
+    "theta_d": 124.57419147411521,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.610183501743693,
+    "nsar": 0.02598137891835892,
+    "theta_u": 170.18069936124212,
+    "theta_d": 125.8376529542783,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.296500655912608,
+    "nsar": 0.03069836005043439,
+    "theta_u": 170.53767779197435,
+    "theta_d": 125.15417763214744,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.020200509484113,
+    "nsar": 0.03564885509993934,
+    "theta_u": 171.41637851988608,
+    "theta_d": 126.0760115563686,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.858235656768214,
+    "nsar": 0.03827411762619197,
+    "theta_u": 171.41637851988608,
+    "theta_d": 123.5110187978408,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.76252916463792,
+    "nsar": 0.04620244359575505,
+    "theta_u": 169.99202019855866,
+    "theta_d": 123.87081071038882,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.777093319108376,
+    "nsar": 0.05439231078709789,
+    "theta_u": 169.79602627826833,
+    "theta_d": 125.31121343963319,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.907025046605176,
+    "nsar": 0.06033147061326882,
+    "theta_u": 169.79602627826833,
+    "theta_d": 124.57419147411521,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.002806283285354,
+    "nsar": 0.06363140316939177,
+    "theta_u": 170.90972307917764,
+    "theta_d": 124.93931020467704,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.019967571123098,
+    "nsar": 0.06680915887942156,
+    "theta_u": 169.79602627826833,
+    "theta_d": 125.31121343963319,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.865786977169929,
+    "nsar": 0.07261849353681978,
+    "theta_u": 169.38034472384487,
+    "theta_d": 125.69005982501398,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.736774499837067,
+    "nsar": 0.07830629635965525,
+    "theta_u": 169.15969454566945,
+    "theta_d": 124.40847225202864,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.632591998667648,
+    "nsar": 0.08136883665623809,
+    "theta_u": 169.15969454566945,
+    "theta_d": 124.40847225202864,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.507054512801249,
+    "nsar": 0.08169785617806305,
+    "theta_u": 169.15969454566945,
+    "theta_d": 125.31121343963319,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.312907131239622,
+    "nsar": 0.0847584969103285,
+    "theta_u": 168.92979742206063,
+    "theta_d": 125.69005982501398,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.133705640823732,
+    "nsar": 0.08510174633824612,
+    "theta_u": 170.3401069215577,
+    "theta_d": 125.15417763214744,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.030320719632599,
+    "nsar": 0.08566203320512196,
+    "theta_u": 170.3401069215577,
+    "theta_d": 125.53767779197437,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.006283572345993,
+    "nsar": 0.08829361215249037,
+    "theta_u": 168.92979742206063,
+    "theta_d": 128.04704253182607,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.237025870352859,
+    "nsar": 0.08818396302968337,
+    "theta_u": 168.92979742206063,
+    "theta_d": 128.15722658736905,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.556053761281785,
+    "nsar": 0.0879623318240096,
+    "theta_u": 168.92979742206063,
+    "theta_d": 129.0625839005185,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 7.914268912167924,
+    "nsar": 0.0879623318240096,
+    "theta_u": 168.6900675259798,
+    "theta_d": 129.0625839005185,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.263934765378893,
+    "nsar": 0.08774070061833585,
+    "theta_u": 168.6900675259798,
+    "theta_d": 129.64417495714483,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.600089800240955,
+    "nsar": 0.08446302244711218,
+    "theta_u": 168.92979742206063,
+    "theta_d": 129.64417495714483,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 8.904483905482627,
+    "nsar": 0.08411977301919456,
+    "theta_u": 169.15969454566945,
+    "theta_d": 127.76307797403199,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.191209080885773,
+    "nsar": 0.08355948615231872,
+    "theta_u": 168.92979742206063,
+    "theta_d": 128.75808565258495,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.435254007203786,
+    "nsar": 0.0832372519954981,
+    "theta_u": 169.91940201245765,
+    "theta_d": 130.12610357779522,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.609636950323843,
+    "nsar": 0.08302466696148449,
+    "theta_u": 169.91940201245765,
+    "theta_d": 130.12610357779522,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.725763459169151,
+    "nsar": 0.08281208192747089,
+    "theta_u": 169.91940201245765,
+    "theta_d": 130.12610357779522,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.802860818013887,
+    "nsar": 0.08237786568778352,
+    "theta_u": 168.6900675259798,
+    "theta_d": 129.72610404264822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.829827534359408,
+    "nsar": 0.0821652806537699,
+    "theta_u": 168.6900675259798,
+    "theta_d": 129.24543466889781,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.81544696046531,
+    "nsar": 0.08206008393590751,
+    "theta_u": 169.91940201245765,
+    "theta_d": 129.64417495714483,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.779378328166596,
+    "nsar": 0.08173784977908688,
+    "theta_u": 169.91940201245765,
+    "theta_d": 130.04972776570827,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.74026619989815,
+    "nsar": 0.08444940476190475,
+    "theta_u": 168.6900675259798,
+    "theta_d": 129.24543466889781,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.706183823934259,
+    "nsar": 0.0874032178660938,
+    "theta_u": 168.6900675259798,
+    "theta_d": 129.15543412261314,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.71080899312286,
+    "nsar": 0.09035703097028285,
+    "theta_u": 168.6900675259798,
+    "theta_d": 128.75808565258495,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.721680558370808,
+    "nsar": 0.09345082167805532,
+    "theta_u": 168.6900675259798,
+    "theta_d": 128.26398878588066,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.721710587877435,
+    "nsar": 0.09640463478224436,
+    "theta_u": 168.6900675259798,
+    "theta_d": 128.75808565258495,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.757622532058678,
+    "nsar": 0.09672686893906499,
+    "theta_u": 167.47119229084848,
+    "theta_d": 128.75808565258495,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.817068012223652,
+    "nsar": 0.09693945397307858,
+    "theta_u": 167.19573393471325,
+    "theta_d": 129.64417495714483,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.889131924840605,
+    "nsar": 0.0971520390070922,
+    "theta_u": 167.19573393471325,
+    "theta_d": 129.24543466889781,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.985376590586592,
+    "nsar": 0.09465752146323254,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.36748538486154,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.089727891825964,
+    "nsar": 0.09213792459873087,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.12248142345185,
+    "nsar": 0.0922779022023143,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.153098472049985,
+    "nsar": 0.09200086319522209,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.128766181209043,
+    "nsar": 0.09186380179171333,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.099628428227104,
+    "nsar": 0.09435831933557298,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.097700125720088,
+    "nsar": 0.09696248600223964,
+    "theta_u": 168.43986920578223,
+    "theta_d": 128.26398878588066,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.045393488510243,
+    "nsar": 0.09956665266890631,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.49265333305034,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.97896463325864,
+    "nsar": 0.10206117021276596,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.908197691732163,
+    "nsar": 0.10444370567375887,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.49265333305034,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.842275561476143,
+    "nsar": 0.10416666666666667,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.764912681766807,
+    "nsar": 0.10416666666666667,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.730085616036625,
+    "nsar": 0.10416666666666667,
+    "theta_u": 167.19573393471325,
+    "theta_d": 127.49265333305034,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.648356891258354,
+    "nsar": 0.1013499149659864,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.540560958127388,
+    "nsar": 0.09853316326530612,
+    "theta_u": 168.43986920578223,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.476684101355504,
+    "nsar": 0.09571641156462585,
+    "theta_u": 168.43986920578223,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.42275798707353,
+    "nsar": 0.09545068027210885,
+    "theta_u": 169.69515353123398,
+    "theta_d": 126.74747095286394,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.375609604375798,
+    "nsar": 0.09518494897959184,
+    "theta_u": 169.69515353123398,
+    "theta_d": 126.74747095286394,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.401356767260758,
+    "nsar": 0.0977891156462585,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.449326863262778,
+    "nsar": 0.0976548802510695,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.60599135740173,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.527197376638295,
+    "nsar": 0.0975206448558805,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.08877288097534,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.6555871735213,
+    "nsar": 0.10020316116137176,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.46786331214756,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.79939966474036,
+    "nsar": 0.10288567746686303,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.08877288097534,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 9.951058661809205,
+    "nsar": 0.1055681937723543,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.08877288097534,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.118343833659198,
+    "nsar": 0.1056996896696823,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.08877288097534,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.260430958882042,
+    "nsar": 0.10583118556701031,
+    "theta_u": 167.19573393471325,
+    "theta_d": 128.08877288097534,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.37015510173299,
+    "nsar": 0.10309278350515463,
+    "theta_u": 168.43986920578223,
+    "theta_d": 127.98349825527708,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.44727630039631,
+    "nsar": 0.10309278350515463,
+    "theta_u": 168.43986920578223,
+    "theta_d": 127.98349825527708,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.50634401769005,
+    "nsar": 0.10309278350515463,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.98349825527708,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.550731090682492,
+    "nsar": 0.10322701890034364,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.587499339418809,
+    "nsar": 0.10336125429553264,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.87498365109822,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.611906560522993,
+    "nsar": 0.10363255109423042,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.37580749554817,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.597747279780386,
+    "nsar": 0.1039038478929282,
+    "theta_u": 167.47119229084848,
+    "theta_d": 126.99527114270715,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.58107070992838,
+    "nsar": 0.10417514469162598,
+    "theta_u": 167.47119229084848,
+    "theta_d": 126.99527114270715,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.555591833993347,
+    "nsar": 0.10444644149032374,
+    "theta_u": 168.43986920578223,
+    "theta_d": 126.62132749378443,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.51882817849704,
+    "nsar": 0.10471773828902152,
+    "theta_u": 168.43986920578223,
+    "theta_d": 126.62132749378443,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.464178328378448,
+    "nsar": 0.10485197368421052,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.400760440504243,
+    "nsar": 0.10485197368421052,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.49265333305034,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.347653407605687,
+    "nsar": 0.10214041870139265,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.60599135740173,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.306522106791451,
+    "nsar": 0.09929180231506601,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.60599135740173,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.270672128420932,
+    "nsar": 0.09655057424489058,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.256260145410748,
+    "nsar": 0.09380934617471513,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.49265333305034,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.273482208636615,
+    "nsar": 0.0910681181045397,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.49265333305034,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.317995289069927,
+    "nsar": 0.08832689003436425,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.374860363038753,
+    "nsar": 0.0857227233676976,
+    "theta_u": 167.47119229084848,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.446559651482081,
+    "nsar": 0.08311855670103092,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  },
+  {
+    "trunk_angle": 10.51183431637284,
+    "nsar": 0.08322594501718213,
+    "theta_u": 168.6900675259798,
+    "theta_d": 127.11686068327027,
+    "fall_detected": true
+  }
+]

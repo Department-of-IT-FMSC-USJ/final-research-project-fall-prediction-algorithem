@@ -1,5 +1,5 @@
 # batch_video_metrics.py
-"""Batch-process a directory of videos, extracting fall-detection metrics.
+r"""Batch-process a directory of videos, extracting fall-detection metrics.
 
 This small wrapper iterates over every video file in a directory, calls the
 `video_metrics._process_video` helper for each one, and saves the per-frame
@@ -11,7 +11,7 @@ Example
 -------
 Process the Coffee-room sample set provided by the user:
 
->>> python batch_video_metrics.py --dir "C:\Users\kasun\OneDrive - Faculty of Management Studies and Commerce\BIS\Research Docs\ML video sampels\Coffee_room_01\Coffee_room_01\Videos" --pattern "*.avi"
+>>> python batch_video_metrics.py --dir "C:\Users\kasun\OneDrive - Faculty of Management Studies and Commerce\BIS\Research Docs\ML video sampels\Clips" --pattern "*.avi"
 
 Use ``--show`` to preview the annotated frames during processing (slower).
 """
